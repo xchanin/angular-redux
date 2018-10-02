@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
-import { IAppState, rootReducer } from './redux/store';
+import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,6 @@ import { IAppState, rootReducer } from './redux/store';
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, {});
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
   }
  }
