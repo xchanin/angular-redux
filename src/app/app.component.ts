@@ -2,6 +2,7 @@ import { INCREMENT } from './actions/constants';
 import { IAppState } from './redux/store';
 import { NgRedux, select } from '@angular-redux/store';
 import { Component } from '@angular/core';
+import { Map } from 'immutable';
 
 @Component({
   selector: 'red-root',
@@ -16,7 +17,7 @@ export class AppComponent {
    * This looks for a field with the exact same name wihtin the store
    * this will return an observable
    */
-  @select('counter') count; // give an alias name
+  @select(s => s.get('counter')) count; // give an alias name
 
   /**
    * This allows us to access a property in the store
@@ -27,7 +28,7 @@ export class AppComponent {
    */
   @select((s: IAppState) => s.messaging.newMessages) newMessageCount;
 
-  constructor(private ngRedux: NgRedux<IAppState>) {
+  constructor(private ngRedux: NgRedux<Map<string, any>>) {
 
   }
 
