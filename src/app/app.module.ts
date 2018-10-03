@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { fromJS, Map } from 'immutable';
 import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 
@@ -19,10 +19,13 @@ import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<Map<string, any>>) {
+  constructor(
+    devTools: DevToolsExtension,
+    ngRedux: NgRedux<Map<string, any>>) {
     /**
      * fromJS is from immutable, this prevents accidental mutations
      */
-    ngRedux.configureStore(rootReducer, fromJS(INITIAL_STATE));
+    const enhancers = isDevMode() ? [devTools.enhancer()] : []; // if devMode then set the enhancer for debugging
+    ngRedux.configureStore(rootReducer, fromJS(INITIAL_STATE), [], enhancers);
   }
  }
