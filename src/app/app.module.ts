@@ -6,10 +6,14 @@ import { AppComponent } from './app.component';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { fromJS, Map } from 'immutable';
 import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { TodoDashboardComponent } from './components/todo-dashboard/todo-dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent,
+    TodoDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -20,12 +24,12 @@ import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 })
 export class AppModule {
   constructor(
-    devTools: DevToolsExtension,
-    ngRedux: NgRedux<Map<string, any>>) {
+    ngRedux: NgRedux<Map<string, any>>,
+    devTools: DevToolsExtension) {
     /**
      * fromJS is from immutable, this prevents accidental mutations
      */
-    const enhancers = isDevMode() ? [devTools.enhancer()] : []; // if devMode then set the enhancer for debugging
+    const enhancers = isDevMode() ? [devTools.enhancer()] : [];
     ngRedux.configureStore(rootReducer, fromJS(INITIAL_STATE), [], enhancers);
   }
  }
