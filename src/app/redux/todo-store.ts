@@ -11,7 +11,7 @@ export const INITIAL_TODO_STATE: IToDoState = {
   lastUpdate: null
 };
 
-export function rootReducer(state: IToDoState, action): IToDoState {
+export function rootToDoReducer(state: IToDoState, action): IToDoState {
   switch (action.type) {
    case ADD_TODO:
     const newToDo = { id: state.todos.length + 1, title: action.title };
@@ -73,7 +73,7 @@ export function rootReducer(state: IToDoState, action): IToDoState {
     case REMOVE_TODO:
       return tassign(state, {
         todos: state.todos.filter(t => t.id !== action.id),
-        lastUpdate: new Date();
+        lastUpdate: new Date()
       });
 
     case CLEAR_TODOS:

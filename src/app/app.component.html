@@ -1,3 +1,14 @@
-<p>Counter: {{ count | async }}</p>
-<button (click)="increment()">Increment</button>
+<!-- <div>
+  <p>Counter: {{ count | async }}</p>
+  <button (click)="increment()">Increment</button>
+</div> -->
 
+<div class="partition">
+  <red-todo-list></red-todo-list>
+</div>
+<div class="partition partition-filled">
+  <red-todo-dashboard></red-todo-dashboard>
+</div>
+<div class="partition partition-filled">
+  <red-third-component></red-third-component>
+</div>

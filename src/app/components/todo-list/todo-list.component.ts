@@ -10,6 +10,8 @@ import { IToDoState } from '../../redux/todo-store';
 })
 export class TodoListComponent {
 
+  @select() todos;
+
   constructor(private ngRedux: NgRedux<IToDoState>) { }
 
   public addTodo(input): void {

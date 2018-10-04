@@ -8,3 +8,8 @@
 <p>
   <button (click)="clearTodos()">Delete All</button>
 </p>
+<ul>
+  <li *ngFor="let t of todos | async">
+    <span [class.completed]="t.isCompleted">{{ t.title }}</span>
+  </li>
+</ul>

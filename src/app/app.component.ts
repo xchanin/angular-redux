@@ -17,16 +17,16 @@ export class AppComponent {
    * This looks for a field with the exact same name wihtin the store
    * this will return an observable
    */
-  @select(s => s.get('counter')) count; // give an alias name
+ // @select(s => s.get('counter')) count; // give an alias name
 
   /**
    * This allows us to access a property in the store
    */
-  @select(['messaging', 'newMessages']) newMessages;
+ // @select(['messaging', 'newMessages']) newMessages;
   /**
    * Use an arrow function
    */
-  @select((s: IAppState) => s.messaging.newMessages) newMessageCount;
+//  @select((s: IAppState) => s.messaging.newMessages) newMessageCount;
 
   constructor(private ngRedux: NgRedux<Map<string, any>>) {
 
@@ -34,6 +34,6 @@ export class AppComponent {
 
 
   public increment() {
-    this.ngRedux.dispatch({type: INCREMENT});
+   // this.ngRedux.dispatch({type: INCREMENT});
   }
 }
